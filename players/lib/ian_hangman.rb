@@ -8,7 +8,7 @@ class IanHangman
   end
 
   def self.words
-    File.read('/usr/share/dict/words').split("\n")
+    @words ||= File.read('/usr/share/dict/words').split("\n")
   end
 
   def answer(state, guesses)
@@ -36,8 +36,11 @@ class IanHangman
     words.each do |word|
       in_word = word.split(//)
       in_word.each do |letter|
-        ord = letter.ord - 97
-        letters[ord] += 1
+        ord = letter.downcase.ord - 97
+        begin
+          letters[ord] += 1
+        rescue
+        end
       end
     end
 
