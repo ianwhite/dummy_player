@@ -12,7 +12,7 @@ describe IanHangman do
     end
 
     describe "with words stubbed" do
-      let(:hangman) { described_class.new 5, ['axe', 'oxe', 'black', 'sheep'] }
+      let(:hangman) { described_class.new 5, ['axe', 'oxe', 'black', 'sheep', 'book'] }
 
       it "after should restrict itself to words matching length" do
         hangman.words.should == ['black', 'sheep']
@@ -47,8 +47,12 @@ describe IanHangman do
 
         describe "#make_educated_guess" do
           it "should guess the next best letter based on words" do
-            hangman.make_educated_guess(['b']).should == 'e'
-            hangman.make_educated_guess(['b', 'e', 'h', 'a']).should == 'c'
+            hangman.make_educated_guess('_____', ['b']).should == 'e'
+            hangman.make_educated_guess('_____', ['b', 'e', 'h', 'a']).should == 'c'
+          end
+
+          it "should look at signular made plural words if last letter s" do
+            hangman.make_educated_guess('____s', ['e', 'k']).should == 'o'
           end
         end
       end

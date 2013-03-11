@@ -1,0 +1,119 @@
+require_relative '../player'
+
+describe Player do
+  it "test case" do
+    words = %w(how
+zamang
+synaptai
+mnemotechnics
+indoloid
+directionless
+philodox
+overdrowsed
+nudibranchian
+Mizar
+undenominated
+Odonata
+Sothiacal
+ascertainment
+Opilionina
+Draconically
+fud
+caritive
+regeneratory
+optableness
+lignosulphite
+moonward
+sophistical
+adipopexis
+edaciousness
+epipoditic
+arginine
+representant
+qualitied
+trimorph
+inexpressibility
+voidness
+torsigraph
+indissolubility
+transparence
+suspended
+Koitapu
+gyrophoric
+fest
+publicness
+quilling
+numismatically
+dedicatorily
+exhaustively
+sinuatoundulate
+septentrional
+invisibility
+bezant
+sonship
+anthracolithic
+cosmosophy
+spraddle
+toweringly
+unrealmed
+Aghlabite
+uptwist
+Clypeaster
+drysaltery
+oppress
+pistic
+Pistacia
+preobjective
+brills
+inconclusiveness
+parorchid
+harbingery
+hurtle
+diplonephridia
+transpierce
+sceptropherous
+opiomania
+expulse
+cineolic
+unangrily
+pyelometry
+milliamp
+photoelectricity
+worshipless
+Durzada
+myxosporidian
+hyperboloidal
+Siksika
+dawdy
+unobtained
+nitrophytic
+plaid
+clamant
+lithophysal
+sheepkeeping
+tonify
+overmasterful
+am
+prompt
+defendress
+bogeyman
+subsequency
+trigonite
+tetrapharmacal
+Mormondom)
+
+    player = Player.new
+
+    words.each do |word|
+
+      puts "\n\nWord: #{word}"
+
+      state = word.gsub(/./,'_')
+      guesses = []
+
+      26.times do
+
+      end
+    end
+  end
+end

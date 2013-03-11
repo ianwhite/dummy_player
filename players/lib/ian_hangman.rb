@@ -4,7 +4,9 @@ class IanHangman
   def initialize length, words = nil
     words ||= self.class.words
     @words = words.select {|w| w.length == length }
-    @words = @words.map &:downcase
+    @singular_words = words.select {|w| w.length == length - 1}
+    @words.map! &:downcase
+    @singular_words.map! &:downcase
   end
 
   def self.words
@@ -16,7 +18,7 @@ class IanHangman
     if words.empty?
       guess = make_freq_guess(guesses)
     else
-      guess = make_educated_guess(guesses)
+      guess = make_educated_guess(state, guesses)
     end
     guess
   end
@@ -49,10 +51,27 @@ class IanHangman
     freqs
   end
 
-  def make_educated_guess guesses
+  def make_educated_guess state, guesses
+    if last_letter_s?(state)
+      combine_singular_words_as_plurals
+      guess_via_words_frequency guesses
+    else
+      guess_via_words_frequency guesses
+    end
+  end
+
+  def guess_via_words_frequency guesses
     freqs = frequencies_for_words
     freqs = freqs.reject {|pair| guesses.include?(pair.first)}
     freqs = freqs.sort_by {|pair| pair.last }
     freqs.last.first
+  end
+
+  def last_letter_s?(state)
+    state.split(//).last == 's'
+  end
+
+  def combine_singular_words_as_plurals
+    @words = @words + @singular_words.map{|w| w + 's' }
   end
 end
