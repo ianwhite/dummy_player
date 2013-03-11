@@ -1,10 +1,14 @@
-require 'my_helper'
+require_relative 'lib/hangman'
+
 class Player
   def name
-    "Change Me"
+    "Ian White"
   end
 
   def take_turn(state, guesses)
-    MyHelper.answer
+    if guesses.empty?
+      @hangman = Hangman.new
+    end
+    @hangman.answer(state, guesses)
   end
 end
