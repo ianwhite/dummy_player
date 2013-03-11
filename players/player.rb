@@ -1,4 +1,4 @@
-require_relative 'lib/hangman'
+require 'ian_hangman'
 
 class Player
   def name
@@ -6,9 +6,7 @@ class Player
   end
 
   def take_turn(state, guesses)
-    if guesses.empty?
-      @hangman = Hangman.new
-    end
+    @hangman = IanHangman.new(state.length) if guesses.empty?
     @hangman.answer(state, guesses)
   end
 end
